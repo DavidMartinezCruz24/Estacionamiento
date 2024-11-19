@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Usuario</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        .dashboard-container {
+            width: 100%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 20px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .welcome {
+            grid-column: span 2;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #0078D4;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn {
+            display: block;
+            padding: 10px 15px;
+            text-align: center;
+            background-color: #0078D4;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #005bb5;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .option-container {
+            margin: 10px 0;
+        }
+
+        select {
+            width: 100%;
+            max-width: 300px;
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        .navigate-btn {
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .navigate-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="welcome">¡Bienvenido<span id="userName"></span>!</div>
+        <div class="menu">
+            <a href="#" class="btn">Perfil</a>
+            <a href="#" class="btn">Configuración</a>
+            <a href="#" class="btn">Ubicación</a>
+            <a href="#" class="btn">Ayuda</a>
+        </div>
+        <div class="content">
+            <h2>Selecciona tu opción de estacionamiento</h2>
+            <div class="option-container">
+                <select id="parkingOptions">
+                    <option value="tesjo">TESJo</option>
+                    <option value="don-nico">Don Nico</option>
+                    <option value="nuevo-lugar">Nuevo Lugar</option>
+                </select>
+            </div>
+            <button class="navigate-btn" onclick="navigateToLocation()">Seleccionar</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('userName').innerText = ''; // Cambia el nombre dinámicamente si es necesario.
+
+        function navigateToLocation() {
+            const selectedOption = document.getElementById('parkingOptions').value;
+            const locations = {
+                'tesjo': 'https://www.google.com/maps/dir/?api=1&destination=Tesjo+Ubicacion', // Ejemplo de lugar
+                'don-nico': 'https://www.google.com/maps/dir/?api=1&destination=Don+Nico+Ubicacion', // Ejemplo de lugar
+                'nuevo-lugar': 'https://www.google.com/maps/dir/?api=1&destination=Nuevo+Lugar+Ubicacion' // Ejemplo de lugar
+            };
+
+            const url = locations[selectedOption];
+            if (url) {
+                window.open(url, '_blank'); // Abre la ruta en una nueva pestaña
+            } else {
+                alert('Selecciona una opción válida.');
+            }
+        }
+    </script>
+</body>
+</html>
